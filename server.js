@@ -9,6 +9,7 @@ import { fileURLToPath } from 'url';
 
 import indexRouter from './routes/index.js';
 import authorsRouter from './routes/authors.js';
+import booksRouter from './routes/books.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -31,6 +32,7 @@ db.once('open', () => console.log('Connected to Mongoose'))
 
 app.use('/', indexRouter);
 app.use('/authors', authorsRouter);
+app.use('/books', booksRouter);
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}!!`);
