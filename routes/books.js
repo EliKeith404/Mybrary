@@ -6,7 +6,7 @@ import Author from '../models/author.js';
 const router = express.Router();
 const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif']
 
-// All Books
+// All Books Page
 router.get('/', async (req, res) => {
     let query = Book.find()
     if(req.query.title != null && req.query.title != ''){
@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
     
 });
 
-// New Book
+// New Book Page
 router.get('/new', async (req, res) => {
     renderNewPage(res, new Book());
 })
@@ -72,7 +72,7 @@ async function renderNewPage(res, book, hasError = false){
             authors: authors,
             book: book
         }
-        if (hasError) params.errorMessage = 'error Creating Book';
+        if (hasError) params.errorMessage = 'Error Creating Book';
         res.render('books/new', params)
     } catch (error) {
         res.redirect('/books');

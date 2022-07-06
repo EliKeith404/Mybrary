@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
     try {
         books = await Book.find().sort({ createAt: 'desc' }).limit(10).exec();
     } catch (error) {
+        console.error(error);
         books = [];
     }
     res.render('index', { books: books });
