@@ -8,6 +8,7 @@ const authorSchema = new mongoose.Schema({
     }
 });
 
+// Before deleting an Author, check if they have books and if so, throw an error
 authorSchema.pre('remove', function(next) {
     Book.find({ author: this.id }, (err, books) => {
         if (err) {
@@ -20,5 +21,5 @@ authorSchema.pre('remove', function(next) {
     });
 });
 
-const authorTemp = mongoose.model('Author', authorSchema);
-export default authorTemp;
+const authorModel = mongoose.model('Author', authorSchema);
+export default authorModel;

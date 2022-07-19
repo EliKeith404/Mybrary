@@ -17,7 +17,8 @@ router.get('/', async (req, res) => {
             authors: authors, 
             searchOptions: req.query
         });
-    } catch (error) {
+    } catch {
+        // If there's an error, send user to homepage
         res.redirect('/');
     }
 });

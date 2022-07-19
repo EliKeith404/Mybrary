@@ -5,14 +5,10 @@ import mongoose from "mongoose";
 import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-
 import indexRouter from './routes/index.js';
 import authorsRouter from './routes/authors.js';
 import booksRouter from './routes/books.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 
 dotenv.config();
@@ -20,8 +16,8 @@ dotenv.config();
 const PORT = process.env.PORT || 8000;
 
 app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');
-app.set('layout', 'layouts/layout');
+app.set('views', './views');
+app.set('layout', './layouts/layout');
 app.use(expressLayouts);
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));

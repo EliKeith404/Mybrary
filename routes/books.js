@@ -8,6 +8,7 @@ const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif']
 
 // All Books Page
 router.get('/', async (req, res) => {
+    // Setup search parameters
     let query = Book.find()
     if(req.query.title != null && req.query.title != ''){
         query = query.regex('title', new RegExp(req.query.title, 'i'));
@@ -18,6 +19,8 @@ router.get('/', async (req, res) => {
     if(req.query.publishedAfter != null && req.query.publishedAfter != ''){
         query = query.gte('publishDate', req.query.publishedAfter)
     }
+
+    // Search database using query parameters
     try {
         const books = await query.exec();
         res.render('books/index', {
@@ -27,7 +30,6 @@ router.get('/', async (req, res) => {
     } catch {
         res.redirect('/');
     }
-    
 });
 
 // New Book Page

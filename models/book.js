@@ -33,9 +33,7 @@ const bookSchema = new mongoose.Schema({
         required: true,
         ref: 'Author'
     }
-})
-
-//const bookTemp = mongoose.model('Book', bookSchema);
+});
 
 bookSchema.virtual('coverImagePath').get(function() {
     if(this.coverImage != null && this.coverImageType != null){
@@ -43,4 +41,5 @@ bookSchema.virtual('coverImagePath').get(function() {
     }
 })
 
-export default mongoose.model('Book', bookSchema);
+const bookModel = mongoose.model('Book', bookSchema);
+export default bookModel;
