@@ -1,7 +1,7 @@
-import dotenv from 'dotenv';
-import express from "express";
-import expressLayouts from "express-ejs-layouts";
-import mongoose from "mongoose";
+import dotenv from 'dotenv/config';
+import express from 'express';
+import expressLayouts from 'express-ejs-layouts';
+import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
 
@@ -10,8 +10,6 @@ import authorsRouter from './routes/authors.js';
 import booksRouter from './routes/books.js';
 
 const app = express();
-
-dotenv.config();
 
 const PORT = process.env.PORT || 8000;
 
@@ -25,13 +23,13 @@ app.use(methodOverride('_method'));
 
 mongoose.connect(process.env.DATABASE_URL, { UseNewUrlParser: true });
 const db = mongoose.connection;
-db.on('error', error => console.error(error));
-db.once('open', () => console.log('Connected to Mongoose'))
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('Connected to Mongoose'));
 
 app.use('/', indexRouter);
 app.use('/authors', authorsRouter);
 app.use('/books', booksRouter);
 
 app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}!!`);
-})
+	console.log(`Listening on port ${PORT}!!`);
+});
