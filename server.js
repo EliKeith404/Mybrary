@@ -1,4 +1,4 @@
-import dotenv from 'dotenv/config';
+import dotenv from 'dotenv';
 import express from 'express';
 import expressLayouts from 'express-ejs-layouts';
 import mongoose from 'mongoose';
@@ -10,6 +10,8 @@ import authorsRouter from './routes/authors.js';
 import booksRouter from './routes/books.js';
 
 const app = express();
+
+dotenv.config();
 
 const PORT = process.env.PORT || 8000;
 
